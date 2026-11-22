@@ -130,7 +130,7 @@ manual approval; no NAT Gateway; budgets; destroy guide. **Nothing is deployed.*
 ## 14. Testing
 
 ```bash
-uv run pytest                    # everything (≈70 s on 1 CPU)
+uv run pytest                    # everything (≈40-70 s on 1 CPU)
 uv run pytest tests/unit         # fast
 uv run pytest tests/integration tests/e2e
 uv run ruff check src tests dashboards scripts && uv run mypy

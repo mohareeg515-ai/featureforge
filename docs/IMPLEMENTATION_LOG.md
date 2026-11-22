@@ -29,7 +29,7 @@ Python 3.12.3, uv 0.11.32) unless marked otherwise. Nothing here is estimated.
 
 ## Final verification results
 
-* `pytest`: **115 passed** (88 unit, 23 integration, 4 e2e), ~70 s.
+* `pytest`: **115 passed** (88 unit, 23 integration, 4 e2e), ~40-70 s.
 * `ruff check` and `ruff format --check`: clean. `mypy --strict` on `src/featureforge` (41 files): no issues.
 * Demo run through the CLI: 22 weekly snapshots 2025-04-01..2025-08-26 in 5 s; `stale` returns `[]`;
   every run 41 checks, 0 critical. Sample outputs in `examples/`.
