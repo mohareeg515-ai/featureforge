@@ -1,0 +1,14 @@
+# PROD-STYLE example. Review every value; nothing here is applied automatically.
+environment          = "prod"
+aws_region           = "eu-central-1"
+subnet_ids           = ["subnet-REPLACE_ME"]
+security_group_ids   = ["sg-REPLACE_ME"]
+budget_alert_email   = "team@example.com"
+monthly_budget_usd   = 25
+schedule_enabled     = false          # enable only after a verified manual run
+task_cpu             = 1024
+task_memory          = 4096
+log_retention_days   = 30
+raw_retention_days   = 0
+force_destroy_bucket = false          # protects data from an accidental destroy
+github_repository    = "your-org/featureforge"

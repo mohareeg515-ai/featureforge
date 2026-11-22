@@ -1,0 +1,42 @@
+name: Deploy image (manual, approval required)
+
+# Never runs on push or pull_request. A maintainer starts it by hand on `main`; the
+# `production` GitHub Environment must be configured with required reviewers, so the job
+# pauses until a human approves. The AWS role trusts ONLY this environment's OIDC subject
+# (see infrastructure/terraform/main.tf), so no other workflow or fork can assume it.
+#
+# Scope: build and push the container image to ECR. Infrastructure (terraform apply/destroy)
+# is deliberately NOT performed by CI; run it locally after reviewing `terraform plan`.
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: "Image tag to push (e.g. 2026-11-20)"
+        required: true
+
+permissions:
+  contents: read
+  id-token: write # request an OIDC token; no long-lived AWS keys are stored anywhere
+
+jobs:
+  push-image:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-arn: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build and push
+        env:
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          REPOSITORY: ${{ vars.ECR_REPOSITORY }}
+          TAG: ${{ inputs.image_tag }}
+        run: |
+          docker build -t "$REGISTRY/$REPOSITORY:$TAG" .
+          docker push "$REGISTRY/$REPOSITORY:$TAG"

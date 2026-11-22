@@ -1,0 +1,12 @@
+# Production-style example. Bucket name and prefix are injected by the ECS task definition
+# (FF_S3_BUCKET / FF_S3_PREFIX). No credentials here: the task IAM role provides them.
+env: prod
+data_root: /tmp/featureforge
+source_kind: retail_file
+retail_file: /tmp/featureforge/external/online_retail.csv
+storage_backend: s3
+log_level: INFO
+duckdb_memory_limit: 1GB
+thresholds:
+  freshness_warn_days: 2
+  freshness_critical_days: 7

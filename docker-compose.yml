@@ -1,0 +1,20 @@
+# Local development only: no AWS, no cloud costs.
+services:
+  pipeline:
+    build: .
+    environment:
+      FF_DATA_ROOT: /data
+      FF_SOURCE_KIND: synthetic
+    volumes:
+      - ./data:/data
+    command: ["run", "--no-prefect"]
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dashboard
+    environment:
+      FF_DATA_ROOT: /data
+    volumes:
+      - ./data:/data:ro
+    ports:
+      - "8501:8501"

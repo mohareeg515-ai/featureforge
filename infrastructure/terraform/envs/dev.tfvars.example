@@ -1,0 +1,12 @@
+# Copy to envs/dev.tfvars (git-ignored) and fill in. DEV: cheapest settings, easy teardown.
+environment          = "dev"
+aws_region           = "eu-central-1"
+subnet_ids           = ["subnet-REPLACE_ME"]       # a PUBLIC subnet (default VPC is fine)
+security_group_ids   = ["sg-REPLACE_ME"]           # no inbound rules; outbound 443 only
+budget_alert_email   = "you@example.com"
+monthly_budget_usd   = 5
+schedule_enabled     = false
+task_cpu             = 512
+task_memory          = 2048
+log_retention_days   = 7
+force_destroy_bucket = true

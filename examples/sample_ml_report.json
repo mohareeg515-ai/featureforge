@@ -1,0 +1,65 @@
+{
+  "class_balance": {
+    "test_positive_rate": 0.7276,
+    "train_positive_rate": 0.7455
+  },
+  "data_is_synthetic": true,
+  "inference_example": {
+    "customers": [
+      "12083",
+      "12266",
+      "12167",
+      "12070",
+      "12189"
+    ],
+    "features_snapshot_ts": "2025-08-26 00:00:00",
+    "predicted_probability": [
+      0.657,
+      0.9473,
+      0.3696,
+      0.3077,
+      0.2253
+    ]
+  },
+  "metrics": {
+    "logistic_regression": {
+      "average_precision": 0.8732,
+      "roc_auc": 0.7317
+    },
+    "note": "Average precision of a no-skill model equals the test positive rate.",
+    "prior_baseline": {
+      "average_precision": 0.7276,
+      "roc_auc": 0.5
+    }
+  },
+  "rows": {
+    "test": 1527,
+    "train": 1112
+  },
+  "split": {
+    "purge_gap_days": 30,
+    "test_observation_dates": [
+      "2025-06-17 00:00:00",
+      "2025-07-22 00:00:00"
+    ],
+    "train_observation_dates": [
+      "2025-04-01 00:00:00",
+      "2025-05-13 00:00:00"
+    ]
+  },
+  "standardized_coefficients": {
+    "avg_order_value": -0.0429,
+    "cart_events_7d": 0.0554,
+    "customer_lifetime_value_proxy": 0.4555,
+    "days_since_last_purchase": 0.1336,
+    "purchase_frequency": 0.9248,
+    "purchases_30d": 0.3494,
+    "purchases_7d": -0.1236,
+    "purchases_90d": 0.4673,
+    "sessions_7d": 0.1819,
+    "total_spend_30d": -0.0702,
+    "total_spend_90d": -0.5104,
+    "unique_products_30d": 0.0978
+  },
+  "target": "purchase within the next 30 days"
+}

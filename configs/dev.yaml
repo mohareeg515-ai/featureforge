@@ -1,0 +1,8 @@
+# Development defaults (local filesystem, synthetic data). Env vars (FF_*) override these.
+env: dev
+data_root: ./data
+source_kind: synthetic
+seed: 42
+synthetic_customers: 300
+storage_backend: local
+log_level: INFO
