@@ -311,12 +311,12 @@ resource "aws_glue_catalog_table" "customer_features" {
   table_type    = "EXTERNAL_TABLE"
 
   parameters = {
-    classification                = "parquet"
-    "projection.enabled"          = "true"
+    classification                    = "parquet"
+    "projection.enabled"              = "true"
     "projection.snapshot_date.type"   = "date"
     "projection.snapshot_date.range"  = "2024-01-01,NOW"
     "projection.snapshot_date.format" = "yyyy-MM-dd"
-    "storage.location.template"   = "s3://${aws_s3_bucket.data.bucket}/${local.s3_prefix}/feature_store/customer_features/snapshot_date=$${snapshot_date}"
+    "storage.location.template"       = "s3://${aws_s3_bucket.data.bucket}/${local.s3_prefix}/feature_store/customer_features/snapshot_date=$${snapshot_date}"
   }
 
   partition_keys {
